@@ -18,14 +18,15 @@
             
           </tr>
           <tr>
-            <td><b>{{createTicket.user.user_name}}</b> <br>
+            <td>
+              <b>{{createTicket.user.user_name}}</b> <br>
               <span>{{createTicket.user.mobile}}</span> <br>
               <span>{{createTicket.user.user_email}}</span>
             </td>
-
-            <td>{{createTicket.ticketId}}</td>
+            <td>----</td>
+            <!--<td>{{createTicket.ticketId}}</td>-->
             <td *ngIf="createTicket.journey.seats">
-             <span  *ngFor="let s of createTicket.journey.seats">{{s}}</span> 
+              <span *ngFor="let s of createTicket.journey.seats">{{s}}</span>
             </td>
             <td>{{createTicket.journey.fare}} </td>
           </tr>

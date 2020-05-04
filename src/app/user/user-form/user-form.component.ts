@@ -12,13 +12,15 @@ import { Router } from '@angular/router';
 })
 export class UserFormComponent implements OnInit {
   journey: Journey;
+  journeyDetails;
   constructor(
     private BookingService: BookingService,
     private route:Router
   ) { }
 
   ngOnInit() {
-    this.journey = JSON.parse(localStorage.getItem("journey"))
+    this.journey = JSON.parse(localStorage.getItem("journey"));
+    this.journeyDetails = JSON.parse(localStorage.getItem("journeyDetails"));
     if(!this.journey){
       this.route.navigate([''])
     }
@@ -33,8 +35,14 @@ export class UserFormComponent implements OnInit {
       mobile: mobile_no,
       user_name: name
     }
-
-    this.BookingService.seatBooking(this.journey, user)
+    this.journeyDetails = this.journeyDetails ? this.journeyDetails : [];
+    this.journeyDetails.push({
+      journey: this.journey,
+      user: user
+    })
+    localStorage.setItem("journeyDetails", JSON.stringify(this.journeyDetails))
+    this.route.navigate(['print']);
+    //this.BookingService.seatBooking(this.journey, user)
 
   }
 

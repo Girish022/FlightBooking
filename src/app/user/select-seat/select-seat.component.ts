@@ -86,20 +86,38 @@ export class SelectSeatComponent implements OnInit, OnDestroy {
 
 
   getbookSeat() {
+    let journeyDetails = JSON.parse(localStorage.getItem("journeyDetails"));
 
     let route: Journey_Route = JSON.parse(localStorage.getItem("route"))
     let busid = this.bus.$key;
     let key = String(new Date(route.date).getTime());
-    console.log(busid, key)
-    this.subscription = this.BusService.getFillupseat(key, busid)
-      .subscribe(res => {
-        for (key in res) {
-          for (let i in res[key].seats) {
-            this.fillupSeat.push(res[key].seats[i])
-            this.changeSeatColor(res[key].seats[i])
+
+    if (journeyDetails) {
+
+      for (let i = 0; i < journeyDetails.length; i++) {
+        let existingJourneyBusId = journeyDetails[i].journey.bus['$key'];
+        let existingJourneyDate = journeyDetails[i].journey.journey_route.date;
+        let existingJourneyTime = journeyDetails[i].journey.bus.time;
+
+        if (existingJourneyBusId === busid && existingJourneyDate === route.date && existingJourneyTime === this.bus.time) {
+          for (let j in journeyDetails[i].journey.seats) {
+            this.fillupSeat.push(journeyDetails[i].journey.seats[j])
+            this.changeSeatColor(journeyDetails[i].journey.seats[j])
           }
         }
-      })
+      }
+    }
+
+    //console.log(busid, key)
+    //this.subscription = this.BusService.getFillupseat(key, busid)
+    //  .subscribe(res => {
+    //    for (key in res) {
+    //      for (let i in res[key].seats) {
+    //        this.fillupSeat.push(res[key].seats[i])
+    //        this.changeSeatColor(res[key].seats[i])
+    //      }
+    //    }
+    //  })
   }
 
   changeSeatColor(seatNo) {
@@ -111,7 +129,7 @@ export class SelectSeatComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    //this.subscription.unsubscribe();
   }
 
 } 

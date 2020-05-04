@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route: Router) { }
 
   ngOnInit() {
+  }
+
+  home() {
+    this.route.navigate(['']);
   }
 
 }
