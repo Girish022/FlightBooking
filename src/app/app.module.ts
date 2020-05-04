@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { ModalModule } from 'ngx-bootstrap';
 import {FormsModule} from '@angular/forms';
 import {RouterModule,Routes} from '@angular/router';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+//import { MatTableModule } from '@angular/material';
 import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
 import { HeaderComponent } from './user/header/header.component';
@@ -16,13 +17,14 @@ import { UserFormComponent } from './user/user-form/user-form.component';
 import { BookingService } from './user/services/booking.service';
 import { UserService } from './user/services/user.service';
 import { PrintComponent } from './user/print/print.component';
+import { AdminComponent } from './user/admin/admin.component';
 
 const userRoute:Routes=[
 {path:'',component:SelectBusComponent},
 {path:'search',component:BusSearchResultComponent},
 {path:'user-form',component:UserFormComponent},
-{path:'print',component:PrintComponent},
-
+  { path: 'print', component: PrintComponent },
+  { path: 'admin', component: AdminComponent }
 ]
 
 @NgModule({
@@ -35,7 +37,8 @@ const userRoute:Routes=[
     SelectSeatComponent,
     BusSearchResultComponent,
     UserFormComponent,
-    PrintComponent
+    PrintComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
