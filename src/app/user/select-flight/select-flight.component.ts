@@ -61,11 +61,10 @@ export class SelectFlightComponent implements OnInit {
     console.log(leavingfrom)
     if (leavingfrom == 'banglore') {
       this.place = [
-        //{ key: '1109001', value: 'Mumbai' },
+        { key: '1109001', value: 'Mumbai' },
         { key: '1109002', value: 'delhi' },
-        //{ key: '1109004', value: 'KuaKata' },
-        //{ key: '1109005', value: 'Coxs Bazar' },
-        //{ key: '1109006', value: 'Rajshahi' }
+        { key: '1109004', value: 'Chennai' },
+     
 
       ]
     }
@@ -73,7 +72,7 @@ export class SelectFlightComponent implements OnInit {
       this.place = [
         { key: '2209002', value: 'delhi' },
         { key: '2209001', value: 'banglore' },
-        { key: '2209003', value: 'Rajshahi' },
+        { key: '2209003', value: 'Chennai' },
 
 
       ]
