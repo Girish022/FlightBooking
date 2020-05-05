@@ -1,35 +1,41 @@
-<p>
-  admin works!
-</p>
 <div class="form-group col-md-6">
   <label>Flights</label>
-  <select name="flights" [ngModel]="selectedFlight" (change)="onFlightSelect()" required class="form-control form-control-sm">
-
-    <!--<option value="1109001">Comilla</option>
-    <option value="1109002">Chittagong</option>
-    <option value="1109003">Sylet</option>
-    <option value="1109004">Barishal</option>-->
+  <select name="flights" [(ngModel)]="selectedFlight" (change)="onFlightSelect()" required class="form-control form-control-sm">
 
     <option *ngFor="let flight of flights" [value]="flight.key">{{flight.name}}</option>
   </select>
 </div>
-<!--<table mat-table [dataSource]="dataSource" class="table-box">
+<div class="row search-result mb-5 pb-5">
 
-  - Note that these columns can be defined in any order.
-  The actual rendered columns are set as a property on the row definition" 
-   Position Column 
-   Name Column 
-  <ng-container matColumnDef="user">
-    <th mat-header-cell *matHeaderCellDef class="text-header-small table-header-color"> User </th>
-    <td mat-cell *matCellDef="let element"> {{element.user}} </td>
-  </ng-container>
+  <table class="table">
 
-   Weight Column 
-  <ng-container matColumnDef="seat">
-    <th mat-header-cell *matHeaderCellDef class="text-header-small table-header-color"> Seat </th>
-    <td mat-cell *matCellDef="let element"> {{element.seat}} </td>
-  </ng-container>
+    <thead>
+      <tr>
+        <th>User Name</th>
+        <th>Seats</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let b of bookingList">
+        <td> <h6>{{b.user.user_name}}</h6></td>
 
-  <tr mat-header-row class="table-header-row" *matHeaderRowDef="displayedColumns;"></tr>
-  <tr mat-row class="text-header-small" *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>-->
+        <td>{{b.journey.seats}}</td>
+        <ng-template #canceltemplate>
+
+          <div class="modal-body">
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <div>
+              <p>Do you want to proceed and cancel the booking</p>
+              <button (click)="cancelBooking(b)" class="btn btn-danger btn-sm">Cancel Booking</button>
+            </div>
+          </div>
+        </ng-template>
+        <td><button (click)="openModal(canceltemplate)" class="btn btn-danger btn-sm">Cancel Booking</button></td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
