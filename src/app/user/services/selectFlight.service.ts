@@ -20,7 +20,7 @@ export class SelectFlightService {
       //return this.http.get(this.Root_url + 'flightes/' + routeId + '.json');
       let flightes = {
         "-LAl4y1UdfdfGNWVo6Pfd_S": {
-          "coach_type": "AC",
+         
           "fare": 1000,
           "location": "banglore to delhi",
           "name": "JetAirways",
@@ -28,7 +28,7 @@ export class SelectFlightService {
           "time": "10:00 PM"
         },
         "-LAl55drgdf44nxdf8kf": {
-         "coach_type": "Non AC",
+       
          "fare": 800,
          "location": "banglore to delhi",
          "name": "Air indigo",
@@ -36,7 +36,7 @@ export class SelectFlightService {
          "time": "7:00 PM"
         },
         "-LAl5Dg9erterr4d94aPBrh": {
-         "coach_type": "AC",
+        
          "fare": 1000,
          "location": "banglore to delhi",
          "name": "JetAirways",
@@ -76,7 +76,7 @@ export class SelectFlightService {
         //  "time": "7:00 PM"
         //},
         "-LAl5S8WeRX6blNIGSgE": {
-         "coach_type": "Non AC",
+         
          "fare": 800,
          "location": "banglore to delhi",
          "name": "Air indigo",
@@ -84,7 +84,7 @@ export class SelectFlightService {
          "time": "5:00 PM"
         },
         "-LAl5TXGFLfUHSXgliG": {
-         "coach_type": "Non AC",
+       
          "fare": 800,
          "location": "banglore to delhi",
          "name": "Air indigo",
