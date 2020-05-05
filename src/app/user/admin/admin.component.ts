@@ -1,6 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-admin',
@@ -8,29 +6,26 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-  journeyDetails;
   flights = [];
+  displayedColumns: string[] = ['user', 'seat'];
   selectedFlight;
-  bookingList = [];
-  modalRef: BsModalRef;
-
-  constructor(private modalService: BsModalService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.journeyDetails = JSON.parse(localStorage.getItem("journeyDetails"));
-    if (this.journeyDetails) {
-      for (let i = 0; i < this.journeyDetails.length; i++) {
+    let journeyDetails = JSON.parse(localStorage.getItem("journeyDetails"));
+    if (journeyDetails) {
+      for (let i = 0; i < journeyDetails.length; i++) {
         let found = false;
         for (let j = 0; j < this.flights.length; j++) {
-          if (this.flights[j].key === this.journeyDetails[i].journey.bus.$key) {
+          if (this.flights[j].key === journeyDetails[i].journey.bus.$key) {
             found = true;
             break;
           }
         }
         if (!found) {
           this.flights.push({
-            key: this.journeyDetails[i].journey.bus.$key,
-            name: this.journeyDetails[i].journey.bus.location + ' ' + this.journeyDetails[i].journey.bus.time
+            key: journeyDetails[i].journey.bus.$key,
+            name: journeyDetails[i].journey.bus.location + ' ' + journeyDetails[i].journey.bus.time
           })
         }        
       }
@@ -39,37 +34,7 @@ export class AdminComponent implements OnInit {
   }
 
   onFlightSelect() {
-    console.log('Flight selected' + this.selectedFlight);
-    this.bookingList = [];
-    for (let i = 0; i < this.journeyDetails.length; i++) {
-      if (this.journeyDetails[i].journey.bus.$key === this.selectedFlight) {
-        this.bookingList.push(this.journeyDetails[i]);
-      }
-    }
+    console.log('Flight selected' + this.selectedFlight)
   }
 
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
-  }
-
-  cancelBooking(booking) {
-    console.log('Flight selected' + booking)
-    for (let i = 0; i < this.journeyDetails.length; i++) {
-      if (this.journeyDetails[i].journey.bus.$key === booking.journey.bus.$key &&
-        this.journeyDetails[i].journey.journey_route.date === booking.journey.journey_route.date &&
-        this.journeyDetails[i].journey.bus.time === booking.journey.bus.time &&
-        this.journeyDetails[i].journey.seats === booking.journey.seats) {
-
-        this.journeyDetails.splice(i, 1);
-        break;
-      }
-    }
-    this.onFlightSelect();
-    localStorage.setItem("journeyDetails", JSON.stringify(this.journeyDetails));
-    this.closeModal();
-  }
-
-  closeModal() {
-    this.modalRef.hide();
-  }
 }
