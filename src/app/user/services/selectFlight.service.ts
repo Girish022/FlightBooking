@@ -24,7 +24,7 @@ export class SelectFlightService {
           "fare": 1000,
           "location": "banglore to delhi",
           "name": "JetAirways",
-          "seat": 36,
+          "seat": 72,
           "time": "10:00 PM"
         },
         "-LAl55drgdf44nxdf8kf": {
@@ -32,7 +32,7 @@ export class SelectFlightService {
          "fare": 800,
          "location": "banglore to delhi",
          "name": "Air indigo",
-         "seat": 36,
+         "seat": 72,
          "time": "7:00 PM"
         },
         "-LAl5Dg9erterr4d94aPBrh": {
@@ -40,7 +40,7 @@ export class SelectFlightService {
          "fare": 1000,
          "location": "banglore to delhi",
          "name": "JetAirways",
-         "seat": 36,
+         "seat": 72,
          "time": "12:00 PM"
         },
         //"-LAl5EqsdghfN1ZDXV9MRg": {
@@ -48,7 +48,7 @@ export class SelectFlightService {
         //  "fare": 1000,
         //  "location": "banglore to delhi",
         //  "name": "JetAirways",
-        //  "seat": 36,
+        //  "seat": 72,
         //  "time": "3:00 PM"
         //},
         //"-LAl5JM45GSDow5HPe-QZ": {
@@ -56,7 +56,7 @@ export class SelectFlightService {
         //  "fare": 800,
         //  "location": "banglore to delhi",
         //  "name": "JetAirways",
-        //  "seat": 36,
+        //  "seat": 72,
         //  "time": "11:00 PM"
         //},
         //"-LAl5LedMrUXP2jerqHT": {
@@ -64,7 +64,7 @@ export class SelectFlightService {
         //  "fare": 800,
         //  "location": "banglore to delhi",
         //  "name": "JetAirways",
-        //  "seat": 36,
+        //  "seat": 72,
         //  "time": "4:00 PM"
         //},
         //"-LAl5Ndf5Zgu1hdHso9_": {
@@ -72,7 +72,7 @@ export class SelectFlightService {
         //  "fare": 800,
         //  "location": "banglore to delhi",
         //  "name": "JetAirways",
-        //  "seat": 36,
+        //  "seat": 72,
         //  "time": "7:00 PM"
         //},
         "-LAl5S8WeRX6blNIGSgE": {
@@ -80,7 +80,7 @@ export class SelectFlightService {
          "fare": 800,
          "location": "banglore to delhi",
          "name": "Air indigo",
-         "seat": 36,
+         "seat": 72,
          "time": "5:00 PM"
         },
         "-LAl5TXGFLfUHSXgliG": {
@@ -88,7 +88,7 @@ export class SelectFlightService {
          "fare": 800,
          "location": "banglore to delhi",
          "name": "Air indigo",
-         "seat": 36,
+         "seat": 72,
          "time": "9:00 PM"
         },
         //"-LAl5WbOS_kJbI1-dn8l": {
@@ -96,7 +96,7 @@ export class SelectFlightService {
         //  "fare": 800,
         //  "location": "banglore to delhi",
         //  "name": "Air indigo",
-        //  "seat": 36,
+        //  "seat": 72,
         //  "time": "9:00 AM"
         //},
         //"-LAl5cnLHDCZJZHa4d2u": {
@@ -104,7 +104,7 @@ export class SelectFlightService {
         //  "fare": 900,
         //  "location": "banglore to delhi",
         //  "name": "S ALOM Paribahan",
-        //  "seat": 36,
+        //  "seat": 72,
         //  "time": "9:00 AM"
         //},
         //"-LAl5fzeferttmAy_SzV1j": {
@@ -112,7 +112,7 @@ export class SelectFlightService {
         //  "fare": 900,
         //  "location": "banglore to delhi",
         //  "name": "S ALOM Paribahan",
-        //  "seat": 36,
+        //  "seat": 72,
         //  "time": "12:00 PM"
         //},
         //"-LAl5gegW_hw2eedJJN_R6Y": {
@@ -120,7 +120,7 @@ export class SelectFlightService {
         //  "fare": 900,
         //  "location": "banglore to delhi",
         //  "name": "S ALOM Paribahan",
-        //  "seat": 36,
+        //  "seat": 72,
         //  "time": "2:00 PM"
         //}
       }
