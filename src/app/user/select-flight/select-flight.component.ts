@@ -11,8 +11,8 @@ import { Journey_Route } from '../models/route.model';
 })
 export class SelectFlightComponent implements OnInit {
   // ={
-  //   1109001:'comilla',
-  //   1109002:'Chittagong',
+  //   1109001:'Mumbai',
+  //   1109002:'delhi',
   //   1109003:'Sylet',
   //   1109004:'Barisal'
   // }
@@ -59,29 +59,29 @@ export class SelectFlightComponent implements OnInit {
 
     let leavingfrom = e.target.value;
     console.log(leavingfrom)
-    if (leavingfrom == 'dhaka') {
+    if (leavingfrom == 'banglore') {
       this.place = [
-        //{ key: '1109001', value: 'Comilla' },
-        { key: '1109002', value: 'Chittagong' },
+        //{ key: '1109001', value: 'Mumbai' },
+        { key: '1109002', value: 'delhi' },
         //{ key: '1109004', value: 'KuaKata' },
         //{ key: '1109005', value: 'Coxs Bazar' },
         //{ key: '1109006', value: 'Rajshahi' }
 
       ]
     }
-    else if (leavingfrom == 'comilla') {
+    else if (leavingfrom == 'Mumbai') {
       this.place = [
-        { key: '2209002', value: 'Chittagong' },
-        { key: '2209001', value: 'Dhaka' },
+        { key: '2209002', value: 'delhi' },
+        { key: '2209001', value: 'banglore' },
         { key: '2209003', value: 'Rajshahi' },
 
 
       ]
     }
-    else if (leavingfrom == 'chittagong') {
+    else if (leavingfrom == 'delhi') {
       this.place = [
         { key: '3309003', value: 'Mymensingh' },
-        { key: '3309001', value: 'Dhaka' },
+        { key: '3309001', value: 'banglore' },
         { key: '3309002', value: 'Sylet' },
 
       ]
