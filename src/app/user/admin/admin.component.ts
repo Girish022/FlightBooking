@@ -22,15 +22,15 @@ export class AdminComponent implements OnInit {
       for (let i = 0; i < this.journeyDetails.length; i++) {
         let found = false;
         for (let j = 0; j < this.flights.length; j++) {
-          if (this.flights[j].key === this.journeyDetails[i].journey.bus.$key) {
+          if (this.flights[j].key === this.journeyDetails[i].journey.flight.$key) {
             found = true;
             break;
           }
         }
         if (!found) {
           this.flights.push({
-            key: this.journeyDetails[i].journey.bus.$key,
-            name: this.journeyDetails[i].journey.bus.location + ' ' + this.journeyDetails[i].journey.bus.time
+            key: this.journeyDetails[i].journey.flight.$key,
+            name: this.journeyDetails[i].journey.flight.location + ' ' + this.journeyDetails[i].journey.flight.time
           })
         }
       }
@@ -42,7 +42,7 @@ export class AdminComponent implements OnInit {
     console.log('Flight selected' + this.selectedFlight);
     this.bookingList = [];
     for (let i = 0; i < this.journeyDetails.length; i++) {
-      if (this.journeyDetails[i].journey.bus.$key === this.selectedFlight) {
+      if (this.journeyDetails[i].journey.flight.$key === this.selectedFlight) {
         this.bookingList.push(this.journeyDetails[i]);
       }
     }
@@ -55,9 +55,9 @@ export class AdminComponent implements OnInit {
   cancelBooking(booking) {
     console.log('Flight selected' + booking)
     for (let i = 0; i < this.journeyDetails.length; i++) {
-      if (this.journeyDetails[i].journey.bus.$key === booking.journey.bus.$key &&
+      if (this.journeyDetails[i].journey.flight.$key === booking.journey.flight.$key &&
         this.journeyDetails[i].journey.journey_route.date === booking.journey.journey_route.date &&
-        this.journeyDetails[i].journey.bus.time === booking.journey.bus.time &&
+        this.journeyDetails[i].journey.flight.time === booking.journey.flight.time &&
         this.journeyDetails[i].journey.seats === booking.journey.seats) {
 
         this.journeyDetails.splice(i, 1);
