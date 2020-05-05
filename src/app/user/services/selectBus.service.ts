@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Bus } from "../models/bus.model";
+import { Bus } from "../models/flight.model";
 import {BehaviorSubject} from 'rxjs'
 
 @Injectable()

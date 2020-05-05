@@ -6,8 +6,8 @@ import { Journey_Route } from '../models/route.model';
 
 @Component({
   selector: '.select-bus',
-  templateUrl: './select-bus.component.html',
-  styleUrls: ['./select-bus.component.css']
+  templateUrl: './select-flight.component.html',
+  styleUrls: ['./select-flight.component.css']
 })
 export class SelectBusComponent implements OnInit {
   // ={

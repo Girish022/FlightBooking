@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SelectBusComponent } from './select-bus.component';
+import { SelectBusComponent } from './select-flight.component';
 
 describe('SelectBusComponent', () => {
   let component: SelectBusComponent;

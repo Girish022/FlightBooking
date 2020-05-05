@@ -1,15 +1,15 @@
 import { Component, OnInit, OnDestroy, TemplateRef } from '@angular/core';
 import { SelectBusService } from '../services/selectBus.service';
 import { Subscription } from 'rxjs';
-import { Bus } from '../models/bus.model';
+import { Bus } from '../models/flight.model';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'search-result-info',
-  templateUrl: './bus-search-result.component.html',
-  styleUrls: ['./bus-search-result.component.css']
+  templateUrl: './flight-search-result.component.html',
+  styleUrls: ['./flight-search-result.component.css']
 })
 export class BusSearchResultComponent implements OnInit, OnDestroy {
   subscription: Subscription;

@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BusSearchResultComponent } from './bus-search-result.component';
+import { BusSearchResultComponent } from './flight-search-result.component';
 
 describe('BusSearchResultComponent', () => {
   let component: BusSearchResultComponent;

@@ -3,7 +3,7 @@ import { Seat } from '../models/seat.model';
 import { Journey } from '../models/journey.model';
 import { Journey_Route } from '../models/route.model';
 import { Router } from '@angular/router';
-import { Bus } from '../models/bus.model';
+import { Bus } from '../models/flight.model';
 import { SelectBusService } from '../services/selectBus.service';
 import { Subscription } from 'rxjs';
 

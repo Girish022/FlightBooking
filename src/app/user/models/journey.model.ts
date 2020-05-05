@@ -1,4 +1,4 @@
-import { Bus } from "./bus.model";
+import { Bus } from "./flight.model";
 import { Seat } from "./seat.model";
 import { Journey_Route } from "./route.model";
 
