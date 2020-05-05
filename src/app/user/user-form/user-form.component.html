@@ -27,9 +27,9 @@
             <h6>Journy Details</h6>
             <hr>
             <h5 class="text-capitalize"style="color:coral"> {{journey.journey_route.leaving_form}} to {{journey.journey_route.going_to}} </h5>
-            <p> Date & Time : {{journey.journey_route.date}} :{{journey.bus.time}}</p>
-            <p>{{journey.bus.name}} <br>
-                <span>Coach Type : {{journey.bus.coach_type}}  </span>
+            <p> Date & Time : {{journey.journey_route.date}} :{{journey.flight.time}}</p>
+            <p>{{journey.flight.name}} <br>
+                <span>Coach Type : {{journey.flight.coach_type}}  </span>
             </p>
             <p >Seats No (
               <li style="display:inline;color:coral" *ngFor="let s of journey.seats">{{s}} , </li>

@@ -13,7 +13,7 @@ export class BookingService {
   journey_info = new BehaviorSubject('')
   cast = this.journey_info.asObservable();
   private USerId;
-  private Root_Url = "https://bdbusticket.firebaseio.com/"
+  private Root_Url = "https://bdflightticket.firebaseio.com/"
   constructor(
     private http: HttpClient,
     private UserService: UserService,
@@ -25,7 +25,7 @@ export class BookingService {
   // }
 
   async seatBooking(jourey: Journey, user) {
-    let busID = jourey.bus.$key;
+    let flightID = jourey.flight.$key;
     let booking = new Object()
     let key = new Date(jourey.journey_route.date).getTime();
     await this.createUserID(user).subscribe(
@@ -34,54 +34,54 @@ export class BookingService {
           user_id: Object.values(res)[0],
           seats: jourey.seats
         }
-        this.chekBookingDate_BusInfo(key, jourey, booking, busID)
+        this.chekBookingDate_FlightInfo(key, jourey, booking, flightID)
       });
 
   }
 
-  private async createBookingDate(journey: Journey, key, booking, busID) {
+  private async createBookingDate(journey: Journey, key, booking, flightID) {
 
-    await this.create(journey, key, busID, booking)
-    // await this.createBooking(booking, key,busID)
+    await this.create(journey, key, flightID, booking)
+    // await this.createBooking(booking, key,flightID)
 
   }
 
-  private async  create(journey: Journey, key, busID, booking) {
+  private async  create(journey: Journey, key, flightID, booking) {
     let location = journey.journey_route.leaving_form + ' to ' + journey.journey_route.going_to;
-    this.http.put(this.Root_Url + 'booking/' + key + '/' + busID + '.json', {
+    this.http.put(this.Root_Url + 'booking/' + key + '/' + flightID + '.json', {
 
-      bus: {
+      flight: {
         location: location,
-        name: journey.bus.name,
-        coach_type: journey.bus.coach_type,
-        nfareame: journey.bus.fare,
-        time: journey.bus.time,
-        seat: journey.bus.seat
+        name: journey.flight.name,
+        coach_type: journey.flight.coach_type,
+        nfareame: journey.flight.fare,
+        time: journey.flight.time,
+        seat: journey.flight.seat
       }
     })
       .subscribe(res => {
-        this.createBooking(booking, key, busID);
+        this.createBooking(booking, key, flightID);
       },
         error => console.log(error))
   }
 
-  private CheckBusID(busID, key, booking, journey) {
-    let busidArray = [];
+  private CheckFlightID(flightID, key, booking, journey) {
+    let flightidArray = [];
     this.http.get(this.Root_Url + 'booking/' + key + '.json')
       .subscribe(res => {
         for (let key in res) {
-          busidArray.push(key)
+          flightidArray.push(key)
         }
-        if (busidArray.indexOf(String(busID)) > -1) {
-          this.createBooking(booking, key, busID);
+        if (flightidArray.indexOf(String(flightID)) > -1) {
+          this.createBooking(booking, key, flightID);
         }
         else {
-          this.create(journey, key, busID, booking);
+          this.create(journey, key, flightID, booking);
         }
       });
   }
 
-  private async chekBookingDate_BusInfo(key, journey, booking, busID) {
+  private async chekBookingDate_FlightInfo(key, journey, booking, flightID) {
 
     let keys = [];
     this.http.get(this.Root_Url + 'booking.json')
@@ -91,18 +91,18 @@ export class BookingService {
             keys.push(key)
           }
           if (keys.indexOf(String(key)) > -1) {
-            this.CheckBusID(busID, key, booking, journey)
+            this.CheckFlightID(flightID, key, booking, journey)
           }
           else {
-            this.createBookingDate(journey, key, booking, busID);
+            this.createBookingDate(journey, key, booking, flightID);
           }
         }
       );
   }
 
-  private createBooking(booking, key, busID) {
+  private createBooking(booking, key, flightID) {
     let tketID;
-    this.http.post(this.Root_Url + 'booking/' + key + '/' + busID + '/seat_booking.json', booking)
+    this.http.post(this.Root_Url + 'booking/' + key + '/' + flightID + '/seat_booking.json', booking)
       .subscribe(res => {
         for (let key in res) {
           tketID = res[key]

@@ -1,4 +1,4 @@
-export class Bus {
+export class Flight {
     $key:string
     coach_type:string;
     fare:number;

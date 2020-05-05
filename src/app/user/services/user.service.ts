@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 
 @Injectable()
 export class UserService {
-    private Root_Url = "https://bdbusticket.firebaseio.com/"
+    private Root_Url = "https://bdflightticket.firebaseio.com/"
     constructor(
         private http:HttpClient
     ){}

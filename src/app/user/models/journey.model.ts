@@ -1,9 +1,9 @@
-import { Bus } from "./flight.model";
+import { Flight } from "./flight.model";
 import { Seat } from "./seat.model";
 import { Journey_Route } from "./route.model";
 
 export class Journey {
-    bus:Bus;
+    flight:Flight;
     seats:seat[];
     fare:number;
     journey_route:Journey_Route

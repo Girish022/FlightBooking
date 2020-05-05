@@ -1,10 +1,10 @@
-import { Bus } from "./flight.model";
+import { Flight } from "./flight.model";
 import { Seat } from "./seat.model";
 
 export class Booking {
     $key:string
     location:string;
-    bus:Bus;
+    flight:Flight;
     seat_book_User:SeatBook;
 }
 

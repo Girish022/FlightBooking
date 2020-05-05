@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row justify-content-center pb-5 pt-3" >
     <div class="col-md-5 block mt-3">
-      <form (ngSubmit)="SearchBus(f)" #f=ngForm>
+      <form (ngSubmit)="SearchFlight(f)" #f=ngForm>
         <div class="row">
           <div class="form-group col-md-6">
             <label>Leaving from</label>
@@ -34,7 +34,7 @@
           </div>
           
         </div>
-        <button [disabled]="!f.valid"class="btn btn-block mt-3 btn-search btn-sm"> <i class="fas mr-2 fa-search"></i> Search Buses</button>
+        <button [disabled]="!f.valid"class="btn btn-block mt-3 btn-search btn-sm"> <i class="fas mr-2 fa-search"></i> Search </button>
       </form>
     </div>
     
