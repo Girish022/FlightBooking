@@ -3,8 +3,8 @@ import { Seat } from '../models/seat.model';
 import { Journey } from '../models/journey.model';
 import { Journey_Route } from '../models/route.model';
 import { Router } from '@angular/router';
-import { Bus } from '../models/bus.model';
-import { SelectBusService } from '../services/selectBus.service';
+import { Flight } from '../models/flight.model';
+import { SelectFlightService } from '../services/selectFlight.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./select-seat.component.css']
 })
 export class SelectSeatComponent implements OnInit, OnDestroy {
-  @Input('bus') bus: Bus;
+  @Input('flight') flight: Flight;
   @Output('closeModal') closeModal = new EventEmitter()
   showSeatList: Seat[] = [];
   total = 0;
@@ -23,7 +23,7 @@ export class SelectSeatComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   constructor(
     private route: Router,
-    private BusService: SelectBusService
+    private FlightService: SelectFlightService
   ) { }
 
   ngOnInit() {
@@ -43,7 +43,7 @@ export class SelectSeatComponent implements OnInit, OnDestroy {
 
         let seat = {
           seatNo: e,
-          fare: this.bus.fare,
+          fare: this.flight.fare,
           seatClass: 'economy'
         }
         this.totalFare(seat.fare);
@@ -73,7 +73,7 @@ export class SelectSeatComponent implements OnInit, OnDestroy {
     });
 
     let journey: Journey = {
-      bus: this.bus,
+      flight: this.flight,
       seats: seats,
       fare: Number(this.total),
       journey_route: route
@@ -89,17 +89,17 @@ export class SelectSeatComponent implements OnInit, OnDestroy {
     let journeyDetails = JSON.parse(localStorage.getItem("journeyDetails"));
 
     let route: Journey_Route = JSON.parse(localStorage.getItem("route"))
-    let busid = this.bus.$key;
+    let flightid = this.flight.$key;
     let key = String(new Date(route.date).getTime());
 
     if (journeyDetails) {
 
       for (let i = 0; i < journeyDetails.length; i++) {
-        let existingJourneyBusId = journeyDetails[i].journey.bus['$key'];
+        let existingJourneyFlightId = journeyDetails[i].journey.flight['$key'];
         let existingJourneyDate = journeyDetails[i].journey.journey_route.date;
-        let existingJourneyTime = journeyDetails[i].journey.bus.time;
+        let existingJourneyTime = journeyDetails[i].journey.flight.time;
 
-        if (existingJourneyBusId === busid && existingJourneyDate === route.date && existingJourneyTime === this.bus.time) {
+        if (existingJourneyFlightId === flightid && existingJourneyDate === route.date && existingJourneyTime === this.flight.time) {
           for (let j in journeyDetails[i].journey.seats) {
             this.fillupSeat.push(journeyDetails[i].journey.seats[j])
             this.changeSeatColor(journeyDetails[i].journey.seats[j])
@@ -108,8 +108,8 @@ export class SelectSeatComponent implements OnInit, OnDestroy {
       }
     }
 
-    //console.log(busid, key)
-    //this.subscription = this.BusService.getFillupseat(key, busid)
+    //console.log(flightid, key)
+    //this.subscription = this.FlightService.getFillupseat(key, flightid)
     //  .subscribe(res => {
     //    for (key in res) {
     //      for (let i in res[key].seats) {

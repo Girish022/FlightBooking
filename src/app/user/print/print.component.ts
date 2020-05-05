@@ -20,13 +20,13 @@ export class PrintComponent implements OnInit {
 
     if (journeyDetails && journey) {
       for (let i = 0; i < journeyDetails.length; i++) {
-        let existingJourneyBusId = journeyDetails[i].journey.bus['$key'];
+        let existingJourneyFlightId = journeyDetails[i].journey.flight['$key'];
         let existingJourneyDate = journeyDetails[i].journey.journey_route.date;
-        let existingJourneyTime = journeyDetails[i].journey.bus.time;
+        let existingJourneyTime = journeyDetails[i].journey.flight.time;
         let existingJourneySeats = journeyDetails[i].journey.seats;
 
-        if (existingJourneyBusId === journey.bus['$key'] && existingJourneyDate === journey.journey_route.date
-          && existingJourneyTime === journey.bus.time && existingJourneySeats.includes(journey.seats[0])) {          
+        if (existingJourneyFlightId === journey.flight['$key'] && existingJourneyDate === journey.journey_route.date
+          && existingJourneyTime === journey.flight.time && existingJourneySeats.includes(journey.seats[0])) {          
           this.createTicket = journeyDetails[i];
           break;
         }

@@ -1,23 +1,23 @@
 import { Component, OnInit, OnDestroy, TemplateRef } from '@angular/core';
-import { SelectBusService } from '../services/selectBus.service';
+import { SelectFlightService } from '../services/selectFlight.service';
 import { Subscription } from 'rxjs';
-import { Bus } from '../models/bus.model';
+import { Flight } from '../models/flight.model';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'search-result-info',
-  templateUrl: './bus-search-result.component.html',
-  styleUrls: ['./bus-search-result.component.css']
+  templateUrl: './flight-search-result.component.html',
+  styleUrls: ['./flight-search-result.component.css']
 })
-export class BusSearchResultComponent implements OnInit, OnDestroy {
+export class FlightSearchResultComponent implements OnInit, OnDestroy {
   subscription: Subscription;
-  buses: Bus[] = [];
+  flightes: Flight[] = [];
   modalRef: BsModalRef;
   route = new Object();
   constructor(
-    private BusService: SelectBusService,
+    private FlightService: SelectFlightService,
     private modalService: BsModalService,
     private router: Router
   ) { }
@@ -27,30 +27,30 @@ export class BusSearchResultComponent implements OnInit, OnDestroy {
     if (!this.route) {
       this.router.navigate([''])
     }
-    this.subscription = this.BusService.castId.subscribe(
-      res => this.getAllBus(res)
+    this.subscription = this.FlightService.castId.subscribe(
+      res => this.getAllFlight(res)
     )
   }
 
-  getAllBus(res) {
-    let bus = new Object();
-    let result = this.BusService.getBus(res);
+  getAllFlight(res) {
+    let flight = new Object();
+    let result = this.FlightService.getFlight(res);
     for (let key in result) {
-      bus = result[key];
-      bus['$key'] = key;
+      flight = result[key];
+      flight['$key'] = key;
 
-      this.buses.push(bus as Bus);
+      this.flightes.push(flight as Flight);
     }
 
-    //this.BusService.getBus(res)
+    //this.FlightService.getFlight(res)
     //.subscribe(
     //  res=>{
     //    for(let key in res){
-    //      bus=res[key];
-    //      bus['$key']=key;
+    //      flight=res[key];
+    //      flight['$key']=key;
 
 
-    //   this.buses.push(bus as Bus);
+    //   this.flightes.push(flight as Flight);
 
 
     //    }
@@ -63,11 +63,11 @@ export class BusSearchResultComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  openModal(template: TemplateRef<any>, bus) {
+  openModal(template: TemplateRef<any>, flight) {
     this.modalRef = this.modalService.show(template);
     // let journey={
     //   route:this.route,
-    //   bus_info:bus,
+    //   flight_info:flight,
     //   seats:
     // }
 

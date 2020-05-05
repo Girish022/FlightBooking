@@ -1,12 +1,12 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Bus } from "../models/bus.model";
+import { Flight } from "../models/flight.model";
 import {BehaviorSubject} from 'rxjs'
 
 @Injectable()
 
-export class SelectBusService {
-    private Root_url = "https://bdbusticket.firebaseio.com/";
+export class SelectFlightService {
+    private Root_url = "https://bdflightticket.firebaseio.com/";
 
 
     private routeId= new BehaviorSubject <string> (''); 
@@ -16,9 +16,9 @@ export class SelectBusService {
         private http: HttpClient,
     ) { }
 
-    getBus(routeId) {
-      //return this.http.get(this.Root_url + 'buses/' + routeId + '.json');
-      let buses = {
+    getFlight(routeId) {
+      //return this.http.get(this.Root_url + 'flightes/' + routeId + '.json');
+      let flightes = {
         "-LAl4y1UdfdfGNWVo6Pfd_S": {
           "coach_type": "AC",
           "fare": 1000,
@@ -124,7 +124,7 @@ export class SelectBusService {
         //  "time": "2:00 PM"
         //}
       }
-      return buses;
+      return flightes;
     }
 
     getRoueId(routeId){
@@ -132,10 +132,10 @@ export class SelectBusService {
     }
 
 
-    getFillupseat(key,busID){
+    getFillupseat(key,flightID){
         
-       return  this.http.get(this.Root_url+'booking/'+key+'/'+busID+'/seat_booking.json')
-        //console.log(this.Root_url+'booking/'+key+'/'+busID+'.json')
+       return  this.http.get(this.Root_url+'booking/'+key+'/'+flightID+'/seat_booking.json')
+        //console.log(this.Root_url+'booking/'+key+'/'+flightID+'.json')
     }
 
     getRoute(key){

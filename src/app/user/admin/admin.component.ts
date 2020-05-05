@@ -17,15 +17,15 @@ export class AdminComponent implements OnInit {
       for (let i = 0; i < journeyDetails.length; i++) {
         let found = false;
         for (let j = 0; j < this.flights.length; j++) {
-          if (this.flights[j].key === journeyDetails[i].journey.bus.$key) {
+          if (this.flights[j].key === journeyDetails[i].journey.flight.$key) {
             found = true;
             break;
           }
         }
         if (!found) {
           this.flights.push({
-            key: journeyDetails[i].journey.bus.$key,
-            name: journeyDetails[i].journey.bus.location + ' ' + journeyDetails[i].journey.bus.time
+            key: journeyDetails[i].journey.flight.$key,
+            name: journeyDetails[i].journey.flight.location + ' ' + journeyDetails[i].journey.flight.time
           })
         }        
       }

@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { SelectBusService } from '../services/selectBus.service';
+import { SelectFlightService } from '../services/selectFlight.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Journey_Route } from '../models/route.model';
 
 @Component({
-  selector: '.select-bus',
-  templateUrl: './select-bus.component.html',
-  styleUrls: ['./select-bus.component.css']
+  selector: '.select-flight',
+  templateUrl: './select-flight.component.html',
+  styleUrls: ['./select-flight.component.css']
 })
-export class SelectBusComponent implements OnInit {
+export class SelectFlightComponent implements OnInit {
   // ={
   //   1109001:'comilla',
   //   1109002:'Chittagong',
@@ -22,7 +22,7 @@ export class SelectBusComponent implements OnInit {
   place: Place[] = [];
 
   constructor(
-    private BusService: SelectBusService,
+    private FlightService: SelectFlightService,
     private router: Router
   ) {
     this.place[0] = new Place()
@@ -32,7 +32,7 @@ export class SelectBusComponent implements OnInit {
 
   }
 
-  SearchBus(form: NgForm) {
+  SearchFlight(form: NgForm) {
     let leaving_form = form.value.leaving_form;
     let destination;
 
@@ -51,7 +51,7 @@ export class SelectBusComponent implements OnInit {
     }
     localStorage.setItem("route", JSON.stringify(route))
     let routeId = form.value.going_to;
-    this.BusService.getRoueId(routeId);
+    this.FlightService.getRoueId(routeId);
     this.router.navigate(['search']);
   }
 
