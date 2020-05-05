@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { FormsModule } from '@angular/forms';
+import { ModalModule } from 'ngx-bootstrap';
+import { BsModalService } from 'ngx-bootstrap/modal';
 import { AdminComponent } from './admin.component';
 
 describe('AdminComponent', () => {
@@ -8,7 +10,9 @@ describe('AdminComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdminComponent ]
+      imports: [FormsModule, ModalModule.forRoot()],
+      declarations: [AdminComponent],
+      providers: [BsModalService]
     })
     .compileComponents();
   }));

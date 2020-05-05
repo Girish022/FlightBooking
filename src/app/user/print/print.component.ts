@@ -10,8 +10,6 @@ import { Router } from '@angular/router';
 export class PrintComponent implements OnInit {
   createTicket;
   constructor(
-    private BookingService: BookingService,
-    private route: Router
   ) { }
 
   ngOnInit() {

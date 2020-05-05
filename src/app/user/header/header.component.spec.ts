@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { HeaderComponent } from './header.component';
 
 describe('HeaderComponent', () => {
@@ -8,7 +9,12 @@ describe('HeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ]
+      imports: [FormsModule],
+      declarations: [HeaderComponent],
+      providers: [{
+        provide: Router,
+        useClass: class { navigate = jasmine.createSpy("navigate"); }
+      }]
     })
     .compileComponents();
   }));
