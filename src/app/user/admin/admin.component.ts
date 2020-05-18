@@ -13,6 +13,7 @@ export class AdminComponent implements OnInit {
   selectedFlight;
   bookingList = [];
   modalRef: BsModalRef;
+  displayedColumns: string[] = ['userName', 'seats', 'action'];
 
   constructor(private modalService: BsModalService) { }
 

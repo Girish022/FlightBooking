@@ -6,8 +6,42 @@
   </select>
 </div>
 <div class="row search-result mb-5 pb-5">
+  <mat-table [dataSource]="bookingList" class="mat-elevation-z8">
 
-  <table class="table">
+    <ng-container matColumnDef="userName">
+      <mat-header-cell *matHeaderCellDef> User Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.user.user_name}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="seats">
+      <mat-header-cell *matHeaderCellDef> Seats </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.journey.seats}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+
+      <mat-cell *matCellDef="let element">
+        <ng-template #canceltemplate>
+          <div class="modal-body">
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <div>
+              <p>Do you want to proceed and cancel the booking</p>
+              <button (click)="cancelBooking(element)" class="btn btn-danger btn-sm">Cancel Booking</button>
+            </div>
+          </div>
+        </ng-template>
+        <button (click)="openModal(canceltemplate)" class="btn btn-danger btn-sm">Cancel Booking</button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <!--<table class="table">
 
     <thead>
       <tr>
@@ -37,5 +71,5 @@
       </tr>
 
     </tbody>
-  </table>
+  </table>-->
 </div>

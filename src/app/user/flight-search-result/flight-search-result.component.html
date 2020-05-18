@@ -23,41 +23,84 @@
        </div>
       </div>
       <div class="row search-result mb-5 pb-5">
+        <mat-table [dataSource]="flights" class="mat-elevation-z8">
 
-        <table class="table">
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> Flight Name </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+          </ng-container>
 
-          <thead>
-            <tr>
-                <th>Flight Name</th>
-                <th>Dept. Time</th>
-                
-                <th>Seats Available</th>
-                <th>Fare</th>
-                <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let b of flightes">
-              <td> <h6>{{b.name}}</h6></td>
-             
-              <td>{{b.time}}</td>
-           
-              <td>{{b.seat}}</td>
-              <td>{{b.fare}}</td>
+          <ng-container matColumnDef="time">
+            <mat-header-cell *matHeaderCellDef> Dept. Time </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.time}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="seat">
+            <mat-header-cell *matHeaderCellDef> Seats Available </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.seat}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="fare">
+            <mat-header-cell *matHeaderCellDef> Fare </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.fare}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+            
+            <mat-cell *matCellDef="let element">
               <ng-template #template>
-           
-                  <div class="modal-body">
-                      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                    <select-seat [flight]="b" (closeModal)="closeModal()"></select-seat>
-                  </div>
+                <div class="modal-body">
+                  <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <select-seat [flight]="element" (closeModal)="closeModal()"></select-seat>
+                </div>
               </ng-template>
-              <td><button  (click)="openModal(template)" class="btn btn-danger btn-sm">View Seats</button></td>
-            </tr>
-  
-          </tbody>
-        </table>
+              <button (click)="openModal(template)" class="btn btn-danger btn-sm">View Seats</button>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+
+
+
+        <!--<table class="table">
+
+    <thead>
+      <tr>
+          <th>Flight Name</th>
+          <th>Dept. Time</th>
+
+          <th>Seats Available</th>
+          <th>Fare</th>
+          <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let b of flightes">
+        <td> <h6>{{b.name}}</h6></td>
+
+        <td>{{b.time}}</td>
+
+        <td>{{b.seat}}</td>
+        <td>{{b.fare}}</td>
+        <ng-template #template>
+
+            <div class="modal-body">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+              <select-seat [flight]="b" (closeModal)="closeModal()"></select-seat>
+            </div>
+        </ng-template>
+        <td><button  (click)="openModal(template)" class="btn btn-danger btn-sm">View Seats</button></td>
+      </tr>
+
+    </tbody>
+  </table>-->
       </div>
     </div>
   </div>

@@ -13,9 +13,10 @@ import { Router } from '@angular/router';
 })
 export class FlightSearchResultComponent implements OnInit, OnDestroy {
   subscription: Subscription;
-  flightes: Flight[] = [];
+  flights: Flight[] = [];
   modalRef: BsModalRef;
   route = new Object();
+  displayedColumns: string[] = ['name', 'time', 'seat', 'fare', 'action'];
   constructor(
     private FlightService: SelectFlightService,
     private modalService: BsModalService,
@@ -39,7 +40,7 @@ export class FlightSearchResultComponent implements OnInit, OnDestroy {
       flight = result[key];
       flight['$key'] = key;
 
-      this.flightes.push(flight as Flight);
+      this.flights.push(flight as Flight);
     }
 
     //this.FlightService.getFlight(res)
@@ -50,7 +51,7 @@ export class FlightSearchResultComponent implements OnInit, OnDestroy {
     //      flight['$key']=key;
 
 
-    //   this.flightes.push(flight as Flight);
+    //   this.flights.push(flight as Flight);
 
 
     //    }

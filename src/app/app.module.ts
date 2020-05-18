@@ -4,7 +4,7 @@ import { ModalModule } from 'ngx-bootstrap';
 import {FormsModule} from '@angular/forms';
 import {RouterModule,Routes} from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-//import { MatTableModule } from '@angular/material';
+import { MatTableModule } from '@angular/material/table';
 import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
 import { HeaderComponent } from './user/header/header.component';
@@ -45,7 +45,8 @@ const userRoute:Routes=[
     RouterModule.forRoot(userRoute),
     HttpClientModule,
     ModalModule.forRoot(),
-    FormsModule
+    FormsModule,
+    MatTableModule
   ],
   providers: [
     SelectFlightService,
