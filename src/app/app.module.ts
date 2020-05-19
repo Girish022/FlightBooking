@@ -4,7 +4,10 @@ import { ModalModule } from 'ngx-bootstrap';
 import {FormsModule} from '@angular/forms';
 import {RouterModule,Routes} from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { MatTableModule } from '@angular/material/table';
+import { flightReducer } from './user/state/booking.reducer';
 import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
 import { HeaderComponent } from './user/header/header.component';
@@ -46,7 +49,9 @@ const userRoute:Routes=[
     HttpClientModule,
     ModalModule.forRoot(),
     FormsModule,
-    MatTableModule
+    MatTableModule,
+    StoreModule.forRoot({}),
+    StoreModule.forFeature('flight', flightReducer)
   ],
   providers: [
     SelectFlightService,

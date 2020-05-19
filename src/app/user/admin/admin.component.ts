@@ -1,6 +1,8 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { getActiveJourneyState, SetJourneyDetailsAction } from '../state/flight-booking';
 
 @Component({
   selector: 'app-admin',
@@ -15,10 +17,25 @@ export class AdminComponent implements OnInit {
   modalRef: BsModalRef;
   displayedColumns: string[] = ['userName', 'seats', 'action'];
 
-  constructor(private modalService: BsModalService) { }
+  constructor(private modalService: BsModalService, private store: Store<any>) { }
 
   ngOnInit() {
-    this.journeyDetails = JSON.parse(localStorage.getItem("journeyDetails"));
+    //this.journeyDetails = JSON.parse(localStorage.getItem("journeyDetails"));
+    this.store.select(getActiveJourneyState)
+      .subscribe((journeyDet: any) => {
+        if (journeyDet) {
+          this.journeyDetails = journeyDet;
+          this.setFlights();
+        }
+      },
+        (err) => {
+          console.log(err);
+        }
+      );
+    
+  }
+
+  setFlights() {
     if (this.journeyDetails) {
       for (let i = 0; i < this.journeyDetails.length; i++) {
         let found = false;
@@ -36,7 +53,6 @@ export class AdminComponent implements OnInit {
         }
       }
     }
-
   }
 
   onFlightSelect() {
@@ -66,7 +82,8 @@ export class AdminComponent implements OnInit {
       }
     }
     this.onFlightSelect();
-    localStorage.setItem("journeyDetails", JSON.stringify(this.journeyDetails));
+    this.store.dispatch(new SetJourneyDetailsAction(this.journeyDetails));
+    //localStorage.setItem("journeyDetails", JSON.stringify(this.journeyDetails));
     this.closeModal();
   }
 

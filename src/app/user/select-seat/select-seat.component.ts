@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Seat } from '../models/seat.model';
 import { Journey } from '../models/journey.model';
 import { Journey_Route } from '../models/route.model';
@@ -6,6 +7,7 @@ import { Router } from '@angular/router';
 import { Flight } from '../models/flight.model';
 import { SelectFlightService } from '../services/selectFlight.service';
 import { Subscription } from 'rxjs';
+import { getActiveJourneyState } from '../state/flight-booking';
 
 @Component({
   selector: 'select-seat',
@@ -19,14 +21,27 @@ export class SelectSeatComponent implements OnInit, OnDestroy {
   total = 0;
   fillupSeat = [];
   alert = false;
+  activeJourneyDetails: any = [];
 
   subscription: Subscription;
   constructor(
+    private store: Store<any>,
     private route: Router,
     private FlightService: SelectFlightService
   ) { }
 
   ngOnInit() {
+    this.store.select(getActiveJourneyState)
+      .subscribe((journeyDet: any) => {
+        if (journeyDet) {
+          this.activeJourneyDetails = journeyDet;          
+        }        
+      },
+        (err) => {
+          console.log(err);
+        }
+    );
+
     this.getbookSeat();
   }
 
@@ -86,7 +101,7 @@ export class SelectSeatComponent implements OnInit, OnDestroy {
 
 
   getbookSeat() {
-    let journeyDetails = JSON.parse(localStorage.getItem("journeyDetails"));
+    let journeyDetails = this.activeJourneyDetails;//JSON.parse(localStorage.getItem("journeyDetails"));
 
     let route: Journey_Route = JSON.parse(localStorage.getItem("route"))
     let flightid = this.flight.$key;

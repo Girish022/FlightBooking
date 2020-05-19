@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { BookingService } from '../services/booking.service';
 import { Router } from '@angular/router';
+import { getActiveJourneyState } from '../state/flight-booking';
 
 @Component({
   selector: 'app-print',
@@ -9,13 +11,27 @@ import { Router } from '@angular/router';
 })
 export class PrintComponent implements OnInit {
   createTicket;
-  constructor(
-  ) { }
+  constructor(private store: Store<any>) { }
 
   ngOnInit() {
-    let journey = JSON.parse(localStorage.getItem("journey"))
-    let journeyDetails = JSON.parse(localStorage.getItem("journeyDetails"));
+    this.store.select(getActiveJourneyState)
+      .subscribe((journeyDet: any) => {
+        if (journeyDet) {
+          let journeyDetails = journeyDet;
+          let journey = JSON.parse(localStorage.getItem("journey"));
+          this.printTicket(journeyDetails, journey);
+        }
+      },
+        (err) => {
+          console.log(err);
+        }
+      );
 
+    //let journey = JSON.parse(localStorage.getItem("journey"))
+    //let journeyDetails = JSON.parse(localStorage.getItem("journeyDetails"));
+  }
+
+  printTicket(journeyDetails, journey) {
     if (journeyDetails && journey) {
       for (let i = 0; i < journeyDetails.length; i++) {
         let existingJourneyFlightId = journeyDetails[i].journey.flight['$key'];
@@ -24,19 +40,11 @@ export class PrintComponent implements OnInit {
         let existingJourneySeats = journeyDetails[i].journey.seats;
 
         if (existingJourneyFlightId === journey.flight['$key'] && existingJourneyDate === journey.journey_route.date
-          && existingJourneyTime === journey.flight.time && existingJourneySeats.includes(journey.seats[0])) {          
+          && existingJourneyTime === journey.flight.time && existingJourneySeats.includes(journey.seats[0])) {
           this.createTicket = journeyDetails[i];
           break;
         }
       }
     }
-
-    //this.BookingService.cast.subscribe(
-    //  res=>this.createTicket=res,
-    //)
-    //if(!this.createTicket){
-    //  this.route.navigate([''])
-    //}
   }
-
 }
