@@ -1,6 +1,8 @@
-import { Component, OnInit, OnDestroy, TemplateRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, TemplateRef, ViewChild } from '@angular/core';
 import { SelectFlightService } from '../services/selectFlight.service';
 import { Subscription } from 'rxjs';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Flight } from '../models/flight.model';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
@@ -12,8 +14,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./flight-search-result.component.css']
 })
 export class FlightSearchResultComponent implements OnInit, OnDestroy {
+  @ViewChild(MatSort) sort: MatSort;
+
   subscription: Subscription;
-  flights: Flight[] = [];
+  flights: any;
+  //flights: MatTableDataSource<any> = new MatTableDataSource<any>();
   modalRef: BsModalRef;
   route = new Object();
   displayedColumns: string[] = ['name', 'time', 'seat', 'fare', 'action'];
@@ -24,6 +29,7 @@ export class FlightSearchResultComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    //this.flights.sort = this.sort;
     this.route = JSON.parse(localStorage.getItem("route"));
     if (!this.route) {
       this.router.navigate([''])
@@ -36,28 +42,22 @@ export class FlightSearchResultComponent implements OnInit, OnDestroy {
   getAllFlight(res) {
     let flight = new Object();
     let result = this.FlightService.getFlight(res);
+    let tempFlights = [];
     for (let key in result) {
       flight = result[key];
       flight['$key'] = key;
 
-      this.flights.push(flight as Flight);
+      tempFlights.push(flight as Flight);
+      // this.flights.push(flight as Flight);
     }
 
-    //this.FlightService.getFlight(res)
-    //.subscribe(
-    //  res=>{
-    //    for(let key in res){
-    //      flight=res[key];
-    //      flight['$key']=key;
+    this.flights = new MatTableDataSource(tempFlights);
+    this.flights.sort = this.sort;
+  }
 
-
-    //   this.flights.push(flight as Flight);
-
-
-    //    }
-    //  }
-    //)
-
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.flights.filter = filterValue.trim().toLowerCase();
   }
 
   ngOnDestroy() {

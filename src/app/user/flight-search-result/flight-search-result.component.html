@@ -1,4 +1,4 @@
-<div class="container mt-4 " *ngIf="route">
+<div class="container mt-4 " >
   <div class="row justify-content-center">
     <div class="col-md-10">
         <div class="row text-center">
@@ -23,31 +23,36 @@
        </div>
       </div>
       <div class="row search-result mb-5 pb-5">
-        <mat-table [dataSource]="flights" class="mat-elevation-z8">
+        <mat-form-field>
+          <mat-label>Filter -></mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Enter text to filter">
+        </mat-form-field>
+
+        <mat-table [dataSource]="flights" matSort class="mat-elevation-z8">
 
           <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef> Flight Name </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Flight Name </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="time">
-            <mat-header-cell *matHeaderCellDef> Dept. Time </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Dept. Time </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.time}} </mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="seat">
-            <mat-header-cell *matHeaderCellDef> Seats Available </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Seats Available </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.seat}} </mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="fare">
-            <mat-header-cell *matHeaderCellDef> Fare </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Fare </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.fare}} </mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="action">
             <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
-            
+
             <mat-cell *matCellDef="let element">
               <ng-template #template>
                 <div class="modal-body">

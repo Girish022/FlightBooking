@@ -1,6 +1,7 @@
 mat-table {
   width: 100%;
   border: 1px solid;
+  margin-top: 10px;
 }
 
 mat-header-row {
@@ -9,4 +10,13 @@ mat-header-row {
 
 mat-row {
     min-height: 55px;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+input {
+  padding-left: 55px;
 }

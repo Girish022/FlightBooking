@@ -4,9 +4,12 @@ import { ModalModule } from 'ngx-bootstrap';
 import {FormsModule} from '@angular/forms';
 import {RouterModule,Routes} from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { MatFormFieldModule, MatInputModule } from '@angular/material';
 import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 import { flightReducer } from './user/state/booking.reducer';
 import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
@@ -49,7 +52,11 @@ const userRoute:Routes=[
     HttpClientModule,
     ModalModule.forRoot(),
     FormsModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatTableModule,
+    MatSortModule,
     StoreModule.forRoot({}),
     StoreModule.forFeature('flight', flightReducer)
   ],
